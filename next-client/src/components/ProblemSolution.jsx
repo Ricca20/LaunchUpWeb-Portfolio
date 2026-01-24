@@ -22,7 +22,7 @@ const ProblemSolution = () => {
     ];
 
     return (
-        <section className="py-20 bg-white relative">
+        <section className="py-20 bg-transparent relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -48,9 +48,9 @@ const ProblemSolution = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.2 }}
-                            className="bg-surface/50 border border-white/5 p-8 rounded-2xl hover:border-red-500/30 transition-all duration-300 group"
+                            className="bg-blue-50/50 border border-blue-100 p-8 rounded-2xl hover:border-primary/50 hover:bg-blue-100/50 transition-all duration-300 group shadow-glass-sm"
                         >
-                            <div className="mb-6 bg-white inline-block p-4 rounded-full shadow-inner border border-white/5 group-hover:scale-110 transition-transform">
+                            <div className="mb-6 bg-white inline-block p-4 rounded-full shadow-sm border border-blue-50 group-hover:scale-110 transition-transform">
                                 {problem.icon}
                             </div>
                             <h3 className="text-2xl font-bold text-gray-900 mb-3">{problem.title}</h3>
@@ -65,7 +65,7 @@ const ProblemSolution = () => {
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    className="bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 rounded-3xl p-8 md:p-12 text-center"
+                    className="bg-blue-50 border border-blue-200 rounded-3xl p-8 md:p-12 text-center"
                 >
                     <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                         That's where <span className="text-primary">LaunchUpWeb</span> comes in.

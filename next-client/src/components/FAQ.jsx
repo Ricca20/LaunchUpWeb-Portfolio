@@ -38,7 +38,7 @@ const FAQ = () => {
     };
 
     return (
-        <section id="faq" className="py-20 bg-white border-t border-gray-800">
+        <section id="faq" className="py-20 bg-blue-50/30 border-t border-blue-100">
             <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -57,7 +57,7 @@ const FAQ = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="border border-gray-800 rounded-xl overflow-hidden bg-surface"
+                            className="border border-blue-100 rounded-xl overflow-hidden bg-blue-50/50 hover:border-primary/50 transition-colors"
                         >
                             <button
                                 onClick={() => toggleQuestion(index)}
@@ -79,7 +79,7 @@ const FAQ = () => {
                                         exit={{ height: 0, opacity: 0 }}
                                         transition={{ duration: 0.3 }}
                                     >
-                                        <div className="px-6 pb-6 text-gray-600 border-t border-gray-800/50 pt-4">
+                                        <div className="px-6 pb-6 text-gray-600 border-t border-blue-200/50 pt-4">
                                             {item.a}
                                         </div>
                                     </motion.div>

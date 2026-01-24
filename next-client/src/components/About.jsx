@@ -4,7 +4,7 @@ import { ArrowRight, Globe, Users, CheckCircle } from 'lucide-react';
 
 const About = () => {
     return (
-        <section id="about" className="py-20 bg-white border-t border-gray-800">
+        <section id="about" className="py-20 bg-blue-50/30 border-t border-blue-100">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
@@ -40,7 +40,7 @@ const About = () => {
                         transition={{ duration: 0.6 }}
                         className="grid grid-cols-1 sm:grid-cols-2 gap-6"
                     >
-                        <div className="bg-surface border border-gray-800 p-8 rounded-2xl text-center hover:border-primary/50 transition-colors">
+                        <div className="bg-blue-50/50 border border-blue-100 p-8 rounded-2xl text-center hover:border-primary/50 transition-colors">
                             <div className="flex justify-center mb-4 text-primary">
                                 <CheckCircle size={40} />
                             </div>
@@ -49,7 +49,7 @@ const About = () => {
                             <p className="text-xs text-gray-500 mt-2">Proven track record</p>
                         </div>
 
-                        <div className="bg-surface border border-gray-800 p-8 rounded-2xl text-center hover:border-secondary/50 transition-colors">
+                        <div className="bg-blue-50/50 border border-blue-100 p-8 rounded-2xl text-center hover:border-primary/50 transition-colors">
                             <div className="flex justify-center mb-4 text-secondary">
                                 <Globe size={40} />
                             </div>
@@ -58,7 +58,7 @@ const About = () => {
                             <p className="text-xs text-gray-500 mt-2">Serving UK & Sri Lanka</p>
                         </div>
 
-                        <div className="bg-surface border border-gray-800 p-8 rounded-2xl text-center hover:border-accent/50 transition-colors sm:col-span-2">
+                        <div className="bg-blue-50/50 border border-blue-100 p-8 rounded-2xl text-center hover:border-primary/50 transition-colors sm:col-span-2">
                             <div className="flex justify-center mb-4 text-accent">
                                 <Users size={40} />
                             </div>

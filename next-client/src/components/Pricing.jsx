@@ -54,7 +54,7 @@ const Pricing = () => {
     ];
 
     return (
-        <section id="pricing" className="py-20 bg-white relative">
+        <section id="pricing" className="py-20 bg-transparent relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -76,7 +76,7 @@ const Pricing = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.2 }}
-                            className={`relative bg-surface rounded-2xl p-8 border ${plan.popular ? 'border-primary shadow-2xl shadow-primary/10 transform md:-translate-y-4' : 'border-gray-800'} flex flex-col`}
+                            className={`relative bg-blue-50/50 backdrop-blur-sm rounded-2xl p-8 border ${plan.popular ? 'border-primary shadow-2xl shadow-primary/20 transform md:-translate-y-4' : 'border-blue-100'} flex flex-col`}
                         >
                             {plan.popular && (
                                 <div className="absolute top-0 right-0 bg-primary text-gray-900 text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-xl">
@@ -98,7 +98,7 @@ const Pricing = () => {
                             </ul>
 
                             <div className="mt-auto">
-                                <a href="#contact" className={`block w-full text-center py-4 rounded-xl font-bold transition-all duration-300 ${plan.popular ? 'bg-primary hover:bg-blue-600 text-gray-900' : 'bg-gray-800 hover:bg-gray-700 text-gray-900'}`}>
+                                <a href="#contact" className={`block w-full text-center py-4 rounded-xl font-bold transition-all duration-300 ${plan.popular ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-500/30' : 'bg-white border border-blue-200 text-primary hover:bg-blue-50'}`}>
                                     {plan.cta}
                                 </a>
                             </div>

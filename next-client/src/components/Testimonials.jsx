@@ -31,19 +31,24 @@ const Testimonials = () => {
     ];
 
     return (
-        <section className="py-20 bg-white relative overflow-hidden">
-            {/* Background blobs */}
-            <div className="absolute right-0 top-1/2 w-96 h-96 bg-secondary/10 rounded-full blur-3xl opacity-50" />
+        <section className="py-24 bg-white relative overflow-hidden">
+            {/* Modern Background Pattern */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f9ff_1px,transparent_1px),linear-gradient(to_bottom,#f0f9ff_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] z-0" />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    className="text-center mb-20"
                 >
-                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">What Our Clients Say</h2>
-                    <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                    <div className="inline-flex items-center space-x-2 bg-blue-50 border border-blue-100 rounded-full px-4 py-1.5 mb-6">
+                        <span className="text-sm font-bold text-blue-600 uppercase tracking-wider">Testimonials</span>
+                    </div>
+                    <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 tracking-tight">
+                        What Our <span className="text-blue-600">Clients Say</span>
+                    </h2>
+                    <p className="text-lg text-gray-600 max-w-2xl mx-auto font-medium">
                         Don't just take our word for it — hear from businesses we've helped grow.
                     </p>
                 </motion.div>
@@ -56,23 +61,28 @@ const Testimonials = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className="bg-surface border border-gray-800 p-8 rounded-2xl relative"
+                            className="bg-white border border-gray-100 p-8 rounded-2xl relative hover:border-blue-200 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300 group"
                         >
-                            <Quote className="absolute top-8 right-8 text-gray-700 w-12 h-12 opacity-50" />
+                            <Quote className="absolute top-8 right-8 text-blue-100 w-10 h-10 group-hover:text-blue-200 transition-colors" />
 
                             <div className="flex mb-4">
                                 {[...Array(5)].map((_, i) => (
-                                    <Star key={i} size={18} className={i < item.rating ? "text-yellow-500 fill-yellow-500" : "text-gray-600"} />
+                                    <Star key={i} size={16} className={i < item.rating ? "text-yellow-400 fill-yellow-400" : "text-gray-200"} />
                                 ))}
                             </div>
 
-                            <p className="text-gray-700 text-lg mb-6 italic relative z-10">
+                            <p className="text-gray-700 text-lg mb-6 italic relative z-10 font-medium leading-relaxed">
                                 "{item.quote}"
                             </p>
 
-                            <div className="border-t border-gray-700 pt-6">
-                                <h4 className="text-gray-900 font-bold">{item.company}</h4>
-                                <p className="text-sm text-gray-500">{item.location}</p>
+                            <div className="border-t border-gray-100 pt-6 flex items-center">
+                                <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold mr-4">
+                                    {item.company.charAt(0)}
+                                </div>
+                                <div>
+                                    <h4 className="text-gray-900 font-bold text-sm">{item.company}</h4>
+                                    <p className="text-xs text-gray-500 font-bold uppercase tracking-wide">{item.location}</p>
+                                </div>
                             </div>
                         </motion.div>
                     ))}
