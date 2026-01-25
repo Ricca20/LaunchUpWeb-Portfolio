@@ -13,34 +13,44 @@ const Benefits = () => {
     ];
 
     return (
-        <section className="py-20 bg-white border-y border-gray-800">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-24 bg-white relative overflow-hidden" id="benefits">
+            {/* Modern Background Pattern */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f9ff_1px,transparent_1px),linear-gradient(to_bottom,#f0f9ff_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] z-0" />
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">What You Get With Every Website</h2>
+                    <div className="inline-flex items-center space-x-2 bg-blue-50 border border-blue-100 rounded-full px-4 py-1.5 mb-6">
+                        <span className="text-sm font-bold text-blue-600 uppercase tracking-wider">Why Choose Us</span>
+                    </div>
+                    <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 tracking-tight">
+                        What You Get With <span className="text-blue-600">Every Website</span>
+                    </h2>
+                    <p className="text-lg text-gray-600 max-w-2xl mx-auto font-medium">
+                        We don't settle for "good enough." Every project includes these premium features as standard.
+                    </p>
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {benefits.map((item, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="flex items-start p-6 rounded-xl hover:bg-surface transition-colors"
+                            className="group relative bg-white border border-blue-50 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:border-blue-200 transition-all duration-300 hover:-translate-y-1"
                         >
-                            <div className="bg-primary/20 p-3 rounded-lg text-primary mr-4">
+                            <div className="w-14 h-14 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 transform group-hover:rotate-6">
                                 {item.icon}
                             </div>
-                            <div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
-                                <p className="text-gray-600 text-sm">{item.desc}</p>
-                            </div>
+
+                            <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">{item.title}</h3>
+                            <p className="text-gray-600 text-sm font-medium leading-relaxed">{item.desc}</p>
                         </motion.div>
                     ))}
                 </div>

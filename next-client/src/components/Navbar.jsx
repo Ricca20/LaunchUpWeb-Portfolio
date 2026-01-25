@@ -5,6 +5,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Tilt from 'react-parallax-tilt';
 import logo from '../assets/logo.svg';
 
+import Link from 'next/link';
+
+// ... (keep imports)
+
 // Magnetic Link Component defined outside to prevent re-renders
 const MagneticLink = ({ children, href }) => {
     const ref = useRef(null);
@@ -23,18 +27,22 @@ const MagneticLink = ({ children, href }) => {
     };
 
     return (
-        <motion.a
+        <motion.div // Changed to div to wrap Link
             ref={ref}
-            href={href}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             animate={{ x: position.x, y: position.y }}
             transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
-            className="text-gray-700 hover:text-primary px-4 py-2 rounded-full text-sm font-medium transition-colors relative group overflow-hidden"
+            className="relative group"
         >
-            <div className="relative z-10">{children}</div>
-            <div className="absolute inset-0 bg-black/5 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300 origin-center" />
-        </motion.a>
+            <Link
+                href={href}
+                className="text-gray-700 hover:text-primary px-4 py-2 rounded-full text-sm font-medium transition-colors relative block overflow-hidden"
+            >
+                <div className="relative z-10">{children}</div>
+                <div className="absolute inset-0 bg-black/5 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300 origin-center" />
+            </Link>
+        </motion.div>
     );
 };
 
@@ -51,13 +59,11 @@ const Navbar = () => {
     }, []);
 
     const navLinks = [
-        { name: 'Home', href: '#home' },
-        { name: 'Services', href: '#services' },
-        { name: 'Portfolio', href: '#portfolio' },
-        { name: 'Process', href: '#process' },
-        { name: 'About', href: '#about' },
-        { name: 'FAQ', href: '#faq' },
-        { name: 'Contact', href: '#contact' },
+        { name: 'Home', href: '/' },
+        { name: 'Services', href: '/services' },
+        { name: 'Portfolio', href: '/portfolio' },
+        { name: 'About', href: '/about' },
+        { name: 'Contact', href: '/contact' },
     ];
 
     const navbarVariants = {
@@ -82,19 +88,21 @@ const Navbar = () => {
             <div className="px-6 py-2">
                 <div className="flex items-center justify-between">
 
-                    <div className="flex-shrink-0 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-                        <Tilt perspective={500} scale={1.05} transitionSpeed={2000}>
-                            <motion.div
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                <img
-                                    src={logo.src || logo}
-                                    alt="LaunchUp Web"
-                                    className="h-10 w-auto drop-shadow-sm filter brightness-110"
-                                />
-                            </motion.div>
-                        </Tilt>
+                    <div className="flex-shrink-0 cursor-pointer">
+                        <Link href="/">
+                            <Tilt perspective={500} scale={1.05} transitionSpeed={2000}>
+                                <motion.div
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    <img
+                                        src={logo.src || logo}
+                                        alt="LaunchUp Web"
+                                        className="h-9 w-auto drop-shadow-sm filter brightness-110 scale-[2.5] origin-left ml-2"
+                                    />
+                                </motion.div>
+                            </Tilt>
+                        </Link>
                     </div>
 
                     <div className="hidden lg:block">
@@ -105,13 +113,14 @@ const Navbar = () => {
                                 </MagneticLink>
                             ))}
                             <Tilt scale={1.05} transitionSpeed={2500}>
-                                <motion.a
-                                    href="#contact"
-                                    whileHover={{ boxShadow: "0 0 20px rgba(0, 122, 255, 0.4)" }}
-                                    className="ml-4 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg shadow-blue-500/30 transition-all duration-300 ring-2 ring-blue-500/20 hover:ring-blue-500/40"
-                                >
-                                    Get Started
-                                </motion.a>
+                                <Link href="/contact" passHref>
+                                    <motion.div
+                                        whileHover={{ boxShadow: "0 0 20px rgba(0, 122, 255, 0.4)" }}
+                                        className="ml-4 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg shadow-blue-500/30 transition-all duration-300 ring-2 ring-blue-500/20 hover:ring-blue-500/40 inline-block cursor-pointer"
+                                    >
+                                        Get Started
+                                    </motion.div>
+                                </Link>
                             </Tilt>
                         </div>
                     </div>
@@ -139,28 +148,32 @@ const Navbar = () => {
                     >
                         <div className="flex flex-col items-center space-y-1">
                             {navLinks.map((link, index) => (
-                                <motion.a
+                                <Link
                                     key={link.name}
-                                    initial={{ opacity: 0, x: -10 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: index * 0.05 }}
                                     href={link.href}
                                     onClick={() => setIsOpen(false)}
-                                    className="text-gray-800 hover:bg-gray-100/50 block px-6 py-3 rounded-2xl text-sm font-medium w-full text-center transition-all duration-200"
+                                    className="w-full"
                                 >
-                                    {link.name}
-                                </motion.a>
+                                    <motion.div
+                                        initial={{ opacity: 0, x: -10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: index * 0.05 }}
+                                        className="text-gray-800 hover:bg-gray-100/50 block px-6 py-3 rounded-2xl text-sm font-medium w-full text-center transition-all duration-200"
+                                    >
+                                        {link.name}
+                                    </motion.div>
+                                </Link>
                             ))}
-                            <motion.a
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.3 }}
-                                href="#contact"
-                                onClick={() => setIsOpen(false)}
-                                className="block w-full text-center bg-primary text-white font-bold py-3 rounded-2xl mt-4 shadow-lg shadow-blue-500/20"
-                            >
-                                Get Started
-                            </motion.a>
+                            <Link href="/contact" onClick={() => setIsOpen(false)} className="w-full">
+                                <motion.div
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.3 }}
+                                    className="block w-full text-center bg-primary text-white font-bold py-3 rounded-2xl mt-4 shadow-lg shadow-blue-500/20"
+                                >
+                                    Get Started
+                                </motion.div>
+                            </Link>
                         </div>
                     </motion.div>
                 )}

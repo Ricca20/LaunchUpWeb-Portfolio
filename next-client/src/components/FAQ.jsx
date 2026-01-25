@@ -38,15 +38,23 @@ const FAQ = () => {
     };
 
     return (
-        <section id="faq" className="py-20 bg-blue-50/30 border-t border-blue-100">
-            <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="faq" className="py-24 bg-white relative overflow-hidden">
+            {/* Modern Background Pattern */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f9ff_1px,transparent_1px),linear-gradient(to_bottom,#f0f9ff_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] z-0" />
+
+            <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
+                    <div className="inline-flex items-center space-x-2 bg-blue-50 border border-blue-100 rounded-full px-4 py-1.5 mb-6">
+                        <span className="text-sm font-bold text-blue-600 uppercase tracking-wider">Support</span>
+                    </div>
+                    <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 tracking-tight">
+                        Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Questions</span>
+                    </h2>
                 </motion.div>
 
                 <div className="space-y-4">
@@ -57,18 +65,20 @@ const FAQ = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="border border-blue-100 rounded-xl overflow-hidden bg-blue-50/50 hover:border-primary/50 transition-colors"
+                            className="border border-blue-50 rounded-2xl overflow-hidden bg-white hover:border-blue-300 hover:shadow-lg hover:shadow-blue-500/5 transition-all duration-300"
                         >
                             <button
                                 onClick={() => toggleQuestion(index)}
-                                className="flex items-center justify-between w-full p-6 text-left focus:outline-none"
+                                className="flex items-center justify-between w-full p-6 text-left focus:outline-none group"
                             >
-                                <span className="text-lg font-semibold text-gray-900">{item.q}</span>
-                                {activeIndex === index ? (
-                                    <Minus className="text-primary flex-shrink-0" />
-                                ) : (
-                                    <Plus className="text-gray-600 flex-shrink-0" />
-                                )}
+                                <span className={`text-lg font-bold transition-colors duration-300 ${activeIndex === index ? 'text-blue-600' : 'text-gray-900 group-hover:text-blue-600'}`}>{item.q}</span>
+                                <div className={`p-2 rounded-full transition-all duration-300 ${activeIndex === index ? 'bg-blue-100 rotate-180' : 'bg-blue-50 group-hover:bg-blue-100'}`}>
+                                    {activeIndex === index ? (
+                                        <Minus size={20} className="text-blue-600" />
+                                    ) : (
+                                        <Plus size={20} className="text-blue-600" />
+                                    )}
+                                </div>
                             </button>
 
                             <AnimatePresence>
@@ -79,7 +89,7 @@ const FAQ = () => {
                                         exit={{ height: 0, opacity: 0 }}
                                         transition={{ duration: 0.3 }}
                                     >
-                                        <div className="px-6 pb-6 text-gray-600 border-t border-blue-200/50 pt-4">
+                                        <div className="px-6 pb-6 text-gray-600 leading-relaxed font-medium border-t border-blue-50 pt-4">
                                             {item.a}
                                         </div>
                                     </motion.div>

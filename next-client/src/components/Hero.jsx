@@ -35,10 +35,10 @@ const Hero = () => {
                         className="inline-flex items-center bg-white/80 border border-primary/30 rounded-full px-5 py-2 mb-10 backdrop-blur-xl shadow-glass hover:scale-105 transition-transform duration-300 cursor-default ring-1 ring-primary/10"
                     >
                         <span className="flex h-3 w-3 relative mr-3">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-600 opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
                         </span>
-                        <span className="text-sm font-bold text-gray-800 tracking-wide">Accepting Projects for 2025</span>
+                        <span className="text-sm font-bold text-gray-800 tracking-wide">Accepting Projects for 2026</span>
                     </motion.div>
 
                     {/* Main Headline with 3D feel */}
@@ -48,9 +48,9 @@ const Hero = () => {
                         transition={{ duration: 1, ease: "easeOut" }}
                         className="text-6xl md:text-8xl font-black text-gray-900 mb-8 leading-tight tracking-tighter perspective-1000"
                     >
-                        We Build Websites That <br className="hidden md:block" />
+                        Professional <br className="hidden md:block" />
                         <span className="text-primary drop-shadow-lg py-2 inline-block transform hover:scale-[1.02] transition-transform duration-500 origin-center cursor-default">
-                            Drive Real Growth
+                            Web Design in Sri Lanka
                         </span>
                     </motion.h1>
 
@@ -61,7 +61,7 @@ const Hero = () => {
                         transition={{ duration: 0.8, delay: 0.2 }}
                         className="text-xl md:text-2xl text-gray-700 mb-14 max-w-3xl mx-auto leading-relaxed font-medium"
                     >
-                        Empowering ambitious brands with <span className="text-primary font-bold">stunning, fast, and intelligent</span> digital experiences that turn visitors into loyal customers.
+                        We build <span className="text-primary font-bold">high-converting, SEO-optimized business websites</span> that help brands in Puttalam and across the UK scale up. Trusted by locals, designed for the world.
                     </motion.p>
 
                     {/* CTAs with Gloss Effect */}

@@ -9,13 +9,29 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors());
+app.use(cors({ origin: '*' })); // Allow all origins explicitly
+app.use((req, res, next) => {
+    console.log(`[REQUEST] ${req.method} ${req.url}`);
+    next();
+});
 app.use(express.json());
 
 // Database Connection
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/portfolio') // Fallback provided
-    .then(() => console.log('MongoDB Connected'))
-    .catch(err => console.log(err));
+const connectDB = async () => {
+    if (!process.env.MONGO_URI) {
+        console.log('No MONGO_URI found in .env. Skipping database connection. (Email-only mode)');
+        return;
+    }
+
+    try {
+        await mongoose.connect(process.env.MONGO_URI);
+        console.log('MongoDB Connected');
+    } catch (err) {
+        console.error('MongoDB Connection Failed:', err.message);
+    }
+};
+
+connectDB();
 
 // Routes
 const projectRoutes = require('./routes/projectRoutes');

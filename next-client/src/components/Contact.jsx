@@ -24,7 +24,11 @@ const Contact = () => {
         e.preventDefault();
         setStatus('sending');
         try {
-            await axios.post('http://localhost:5000/api/contact', formData);
+            // Attempt to save to backend (which now handles Email)
+            // Use environment variable for API URL or fallback to localhost
+            const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001';
+            await axios.post(`${apiUrl}/api/contact`, formData);
+
             setStatus('success');
             setFormData({ name: '', company: '', phone: '', email: '', service: '', message: '' });
             setTimeout(() => setStatus('idle'), 5000);
@@ -35,30 +39,21 @@ const Contact = () => {
     };
 
     return (
-        <section id="contact" className="py-32 relative overflow-hidden perspective-1000">
-            {/* 3D Floating Objects */}
+        <section id="contact" className="py-24 bg-white relative overflow-hidden perspective-1000">
+            {/* Modern Background Pattern */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f9ff_1px,transparent_1px),linear-gradient(to_bottom,#f0f9ff_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] z-0" />
+
+            {/* 3D Floating Objects - Subtle Theme Colors */}
             <div className="absolute inset-0 pointer-events-none">
                 <motion.div
                     animate={{ rotate: 360, y: [0, 50, 0], scale: [1, 1.1, 1] }}
                     transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                    className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[100px]"
+                    className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-100/40 rounded-full blur-[100px]"
                 />
                 <motion.div
                     animate={{ rotate: -360, y: [0, -50, 0], scale: [1, 1.2, 1] }}
                     transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                    className="absolute bottom-0 left-0 w-[700px] h-[700px] bg-secondary/20 rounded-full blur-[120px]"
-                />
-
-                {/* Isometric Cubes - Glass */}
-                <motion.div
-                    animate={{ y: [0, -30, 0], rotateZ: [0, 10, 0] }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute top-[20%] left-[10%] w-24 h-24 bg-white/20 border border-white/50 backdrop-blur-md rounded-3xl shadow-glass transform rotate-45"
-                />
-                <motion.div
-                    animate={{ y: [0, 30, 0], rotateZ: [0, -10, 0] }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute bottom-[20%] right-[10%] w-32 h-32 bg-white/10 border border-white/40 backdrop-blur-md rounded-full shadow-glass"
+                    className="absolute bottom-0 left-0 w-[700px] h-[700px] bg-cyan-100/40 rounded-full blur-[120px]"
                 />
             </div>
 
@@ -69,18 +64,18 @@ const Contact = () => {
                     viewport={{ once: true }}
                     className="text-center mb-20"
                 >
-                    <div className="inline-flex items-center space-x-2 bg-white/60 border border-white/60 rounded-full px-4 py-1.5 mb-6 backdrop-blur-md shadow-glass-sm">
+                    <div className="inline-flex items-center space-x-2 bg-blue-50 border border-blue-100 rounded-full px-4 py-1.5 mb-6">
                         <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
                         </span>
-                        <span className="text-sm font-bold text-gray-800">Let's Work Together</span>
+                        <span className="text-sm font-bold text-blue-600 uppercase tracking-wider">Let's Work Together</span>
                     </div>
-                    <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-6 tracking-tight">
+                    <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 tracking-tight">
                         Start Your Project <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">With LaunchUpWeb</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">With LaunchUpWeb</span>
                     </h2>
-                    <p className="text-xl text-gray-600 max-w-2xl mx-auto font-medium leading-relaxed">
+                    <p className="text-lg text-gray-600 max-w-2xl mx-auto font-medium">
                         Ready to transform your digital presence? We're here to help you build something extraordinary. Drop us a line!
                     </p>
                 </motion.div>
@@ -95,37 +90,37 @@ const Contact = () => {
                         className="space-y-8"
                     >
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} className="h-full">
-                                <div className="bg-blue-50/60 border border-blue-100 p-8 rounded-[2rem] h-full hover:border-primary/50 transition-all duration-300 group shadow-glass hover:shadow-glass-lg backdrop-blur-xl hover:bg-blue-100/50">
-                                    <div className="bg-white p-4 rounded-2xl w-16 h-16 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm border border-blue-50">
+                            <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} className="h-full">
+                                <a href="https://wa.me/94778320044" target="_blank" rel="noopener noreferrer" className="block bg-white border border-blue-50 p-8 rounded-[2rem] h-full hover:border-blue-200 transition-all duration-300 group shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1">
+                                    <div className="bg-blue-50 p-4 rounded-2xl w-16 h-16 flex items-center justify-center text-blue-600 mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm border border-blue-50">
                                         <Smartphone size={32} />
                                     </div>
                                     <h3 className="text-gray-900 font-bold text-xl mb-2">WhatsApp</h3>
                                     <p className="text-gray-600 mb-4 font-medium">+94 77 832 0044</p>
-                                    <a href="#" className="text-primary font-bold hover:text-blue-600 transition-colors flex items-center group-hover:translate-x-2 duration-300">
+                                    <span className="text-blue-600 font-bold hover:text-blue-700 transition-colors flex items-center group-hover:translate-x-2 duration-300">
                                         Chat Now <Send size={16} className="ml-2" />
-                                    </a>
-                                </div>
+                                    </span>
+                                </a>
                             </Tilt>
 
-                            <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} className="h-full">
-                                <div className="bg-blue-50/60 border border-blue-100 p-8 rounded-[2rem] h-full hover:border-secondary/50 transition-all duration-300 group shadow-glass hover:shadow-glass-lg backdrop-blur-xl hover:bg-blue-100/50">
-                                    <div className="bg-white p-4 rounded-2xl w-16 h-16 flex items-center justify-center text-secondary mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm border border-blue-50">
+                            <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} className="h-full">
+                                <div className="bg-white border border-blue-50 p-8 rounded-[2rem] h-full hover:border-blue-200 transition-all duration-300 group shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1">
+                                    <div className="bg-blue-50 p-4 rounded-2xl w-16 h-16 flex items-center justify-center text-cyan-600 mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm border border-blue-50">
                                         <Mail size={32} />
                                     </div>
                                     <h3 className="text-gray-900 font-bold text-xl mb-2">Email Us</h3>
-                                    <p className="text-gray-600 mb-4 font-medium">hello@launchupweb.com</p>
-                                    <a href="mailto:hello@launchupweb.com" className="text-secondary font-bold hover:text-pink-600 transition-colors flex items-center group-hover:translate-x-2 duration-300">
+                                    <p className="text-gray-600 mb-4 font-medium">Info@launchupweb.com</p>
+                                    <a href="mailto:Info@launchupweb.com" className="text-cyan-600 font-bold hover:text-cyan-700 transition-colors flex items-center group-hover:translate-x-2 duration-300">
                                         Send Email <Send size={16} className="ml-2" />
                                     </a>
                                 </div>
                             </Tilt>
                         </div>
 
-                        <div className="bg-gradient-to-r from-blue-50/80 to-blue-50/40 border border-blue-100 p-8 rounded-[2rem] relative overflow-hidden group shadow-glass backdrop-blur-xl">
-                            <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none" />
+                        <div className="bg-blue-50 border border-blue-100 p-8 rounded-[2rem] relative overflow-hidden group shadow-sm">
+                            <div className="absolute top-0 right-0 w-40 h-40 bg-white/40 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none" />
                             <div className="relative z-10 flex items-start">
-                                <div className="bg-white p-3 rounded-xl text-primary mr-6 mt-1 shadow-md border border-blue-50">
+                                <div className="bg-white p-3 rounded-xl text-blue-600 mr-6 mt-1 shadow-sm border border-blue-100">
                                     <MapPin size={24} />
                                 </div>
                                 <div>
@@ -140,15 +135,15 @@ const Contact = () => {
                         <div>
                             <h3 className="text-gray-900 font-bold text-xl mb-6 flex items-center">
                                 Follow Our Journey
-                                <span className="h-px bg-gray-200 flex-grow ml-6"></span>
+                                <span className="h-px bg-gray-100 flex-grow ml-6"></span>
                             </h3>
                             <div className="flex gap-4">
                                 {[Facebook, Linkedin, Instagram].map((Icon, idx) => (
                                     <motion.a
                                         key={idx}
                                         whileHover={{ y: -5, scale: 1.1 }}
-                                        href="#"
-                                        className="bg-white border border-blue-100 p-4 rounded-2xl text-gray-500 hover:text-primary hover:shadow-glass transition-all duration-300 shadow-sm"
+                                        href={idx === 0 ? "https://www.facebook.com/share/17owgJdGeS/?mibextid=wwXIfr" : "#"}
+                                        className="bg-white border border-blue-50 p-4 rounded-2xl text-gray-400 hover:text-blue-600 hover:border-blue-200 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 shadow-sm"
                                     >
                                         <Icon size={24} />
                                     </motion.a>
@@ -157,7 +152,7 @@ const Contact = () => {
                         </div>
                     </motion.div>
 
-                    {/* Contact Form - 3D Glass Envelope */}
+                    {/* Contact Form */}
                     <motion.div
                         initial={{ opacity: 0, x: 50 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -165,14 +160,12 @@ const Contact = () => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                     >
                         <Tilt
-                            tiltMaxAngleX={3}
-                            tiltMaxAngleY={3}
+                            tiltMaxAngleX={2}
+                            tiltMaxAngleY={2}
                             perspective={1500}
                             className="relative"
                         >
-                            <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-secondary/30 rounded-[3rem] blur-xl opacity-50 transform translate-y-4" />
-
-                            <div className="bg-white/80 backdrop-blur-2xl border border-blue-100 rounded-[3rem] p-8 md:p-10 relative z-10 shadow-glass-lg">
+                            <div className="bg-white border border-blue-50 rounded-[2.5rem] p-8 md:p-10 relative z-10 shadow-xl shadow-blue-500/5">
                                 <form onSubmit={handleSubmit} className="space-y-6">
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div className="group">
@@ -183,7 +176,7 @@ const Contact = () => {
                                                 value={formData.name}
                                                 onChange={handleChange}
                                                 required
-                                                className="w-full bg-blue-50/50 border border-blue-100 rounded-2xl px-5 py-4 text-gray-900 focus:outline-none focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all placeholder-gray-400 font-medium shadow-inner"
+                                                className="w-full bg-gray-50 border border-gray-100 rounded-2xl px-5 py-4 text-gray-900 focus:outline-none focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all placeholder-gray-400 font-medium"
                                                 placeholder="Your Name"
                                             />
                                         </div>
@@ -194,7 +187,7 @@ const Contact = () => {
                                                 name="company"
                                                 value={formData.company}
                                                 onChange={handleChange}
-                                                className="w-full bg-blue-50/50 border border-blue-100 rounded-2xl px-5 py-4 text-gray-900 focus:outline-none focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all placeholder-gray-400 font-medium shadow-inner"
+                                                className="w-full bg-gray-50 border border-gray-100 rounded-2xl px-5 py-4 text-gray-900 focus:outline-none focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all placeholder-gray-400 font-medium"
                                                 placeholder="Business Name"
                                             />
                                         </div>
@@ -209,7 +202,7 @@ const Contact = () => {
                                                 value={formData.phone}
                                                 onChange={handleChange}
                                                 required
-                                                className="w-full bg-blue-50/50 border border-blue-100 rounded-2xl px-5 py-4 text-gray-900 focus:outline-none focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all placeholder-gray-400 font-medium shadow-inner"
+                                                className="w-full bg-gray-50 border border-gray-100 rounded-2xl px-5 py-4 text-gray-900 focus:outline-none focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all placeholder-gray-400 font-medium"
                                                 placeholder="+94 ..."
                                             />
                                         </div>
@@ -221,7 +214,7 @@ const Contact = () => {
                                                 value={formData.email}
                                                 onChange={handleChange}
                                                 required
-                                                className="w-full bg-blue-50/50 border border-blue-100 rounded-2xl px-5 py-4 text-gray-900 focus:outline-none focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all placeholder-gray-400 font-medium shadow-inner"
+                                                className="w-full bg-gray-50 border border-gray-100 rounded-2xl px-5 py-4 text-gray-900 focus:outline-none focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all placeholder-gray-400 font-medium"
                                                 placeholder="name@company.com"
                                             />
                                         </div>
@@ -234,13 +227,14 @@ const Contact = () => {
                                                 name="service"
                                                 value={formData.service}
                                                 onChange={handleChange}
-                                                className="w-full bg-white/50 border border-white/50 rounded-2xl px-5 py-4 text-gray-900 focus:outline-none focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all appearance-none font-medium cursor-pointer shadow-inner"
+                                                className="w-full bg-gray-50 border border-gray-100 rounded-2xl px-5 py-4 text-gray-900 focus:outline-none focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all appearance-none font-medium cursor-pointer"
                                             >
                                                 <option value="">Select a Service</option>
                                                 <option value="Business Website">Business Website</option>
                                                 <option value="E-Commerce">E-Commerce</option>
                                                 <option value="Portfolio Website">Portfolio Website</option>
                                                 <option value="Website Redesign">Website Redesign</option>
+                                                <option value="Landing Pages & Funnels">Landing Pages & Funnels</option>
                                                 <option value="SEO Optimization">SEO Optimization</option>
                                                 <option value="Other">Other</option>
                                             </select>
@@ -258,17 +252,17 @@ const Contact = () => {
                                             onChange={handleChange}
                                             required
                                             rows="4"
-                                            className="w-full bg-white/50 border border-white/50 rounded-2xl px-5 py-4 text-gray-900 focus:outline-none focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all placeholder-gray-400 font-medium resize-none shadow-inner"
+                                            className="w-full bg-gray-50 border border-gray-100 rounded-2xl px-5 py-4 text-gray-900 focus:outline-none focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all placeholder-gray-400 font-medium resize-none"
                                             placeholder="Tell us about your project..."
                                         ></textarea>
                                     </div>
 
                                     <motion.button
                                         type="submit"
-                                        whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(0, 122, 255, 0.5)" }}
+                                        whileHover={{ scale: 1.02 }}
                                         whileTap={{ scale: 0.98 }}
                                         disabled={status === 'sending' || status === 'success'}
-                                        className={`w-full flex items-center justify-center py-5 px-6 rounded-2xl font-bold text-white text-lg transition-all duration-300 shadow-xl ${status === 'success' ? 'bg-green-500 shadow-green-500/30' : 'bg-primary shadow-blue-500/30'
+                                        className={`w-full flex items-center justify-center py-5 px-6 rounded-2xl font-bold text-white text-lg transition-all duration-300 shadow-xl ${status === 'success' ? 'bg-green-500 shadow-green-500/30' : 'bg-gradient-to-r from-blue-600 to-blue-700 hover:to-blue-600 shadow-blue-600/30'
                                             }`}
                                     >
                                         {status === 'sending' ? (
