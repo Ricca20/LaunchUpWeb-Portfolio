@@ -1,124 +1,89 @@
 "use client";
 import { motion } from 'framer-motion';
-import { ArrowRight, Zap, Smartphone, TrendingUp, Search } from 'lucide-react';
-import Tilt from 'react-parallax-tilt';
+import { ArrowRight, Check, Sparkles } from 'lucide-react';
 
 const Hero = () => {
     return (
-        <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32">
-            {/* 3D Modern Background Elements - Enhanced Blue */}
-            <div className="absolute inset-0 pointer-events-none">
-                <motion.div
-                    animate={{ rotate: 360, scale: [1, 1.1, 1] }}
-                    transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                    className="absolute top-[-20%] right-[-10%] w-[900px] h-[900px] rounded-full bg-gradient-to-br from-primary/40 to-secondary/40 blur-[130px] opacity-80"
-                />
-                <motion.div
-                    animate={{ rotate: -360, scale: [1, 1.2, 1] }}
-                    transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                    className="absolute bottom-[-20%] left-[-15%] w-[900px] h-[900px] rounded-full bg-gradient-to-tr from-accent/30 to-primary/30 blur-[140px] opacity-70"
-                />
-                <motion.div
-                    animate={{ y: [-20, 20, -20] }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute top-[30%] left-[10%] w-[400px] h-[400px] bg-secondary/20 rounded-full blur-[100px]"
-                />
+        <section id="home" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-32 pb-20">
+            {/* Background - PopHop Style (Soft Mesh + Grid) */}
+            <div className="absolute inset-0 pointer-events-none bg-white">
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-50" />
+                <div className="absolute top-[-20%] left-[20%] w-[600px] h-[600px] bg-blue-400/20 rounded-full blur-[120px]" />
+                <div className="absolute top-[10%] right-[10%] w-[500px] h-[500px] bg-cyan-400/20 rounded-full blur-[100px]" />
             </div>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="text-center max-w-5xl mx-auto">
-                    {/* Floating Badge - Blue Tint */}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+                <div className="flex flex-col items-center text-center max-w-5xl mx-auto">
+
+                    {/* Badge - Pill Shape */}
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
+                        initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, type: "spring" }}
-                        className="inline-flex items-center bg-white/80 border border-primary/30 rounded-full px-5 py-2 mb-10 backdrop-blur-xl shadow-glass hover:scale-105 transition-transform duration-300 cursor-default ring-1 ring-primary/10"
+                        transition={{ duration: 0.6 }}
+                        className="inline-flex items-center gap-2 bg-white px-5 py-2.5 rounded-full shadow-lg shadow-gray-200/50 mb-10 border border-gray-100"
                     >
-                        <span className="flex h-3 w-3 relative mr-3">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-600 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+                        <span className="flex h-2 w-2 relative">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                         </span>
-                        <span className="text-sm font-bold text-gray-800 tracking-wide">Accepting Projects for 2026</span>
+                        <span className="text-sm font-semibold text-gray-600">Trusted by businesses in Sri Lanka & UK</span>
                     </motion.div>
 
-                    {/* Main Headline with 3D feel */}
+                    {/* Headline - Mixed Typography */}
                     <motion.h1
-                        initial={{ opacity: 0, scale: 0.9, rotateX: 20 }}
-                        animate={{ opacity: 1, scale: 1, rotateX: 0 }}
-                        transition={{ duration: 1, ease: "easeOut" }}
-                        className="text-6xl md:text-8xl font-black text-gray-900 mb-8 leading-tight tracking-tighter perspective-1000"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.1 }}
+                        className="text-6xl md:text-8xl text-gray-900 mb-8 leading-[1.1] tracking-tight"
                     >
-                        Professional <br className="hidden md:block" />
-                        <span className="text-primary drop-shadow-lg py-2 inline-block transform hover:scale-[1.02] transition-transform duration-500 origin-center cursor-default">
-                            Web Design in Sri Lanka
+                        <span className="font-serif font-medium italic mr-4">Building</span>
+                        <span className="font-bold inline-block">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Digital Empires</span>
                         </span>
                     </motion.h1>
 
                     {/* Subheadline */}
                     <motion.p
-                        initial={{ opacity: 0, y: 30 }}
+                        initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="text-xl md:text-2xl text-gray-700 mb-14 max-w-3xl mx-auto leading-relaxed font-medium"
+                        className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed font-medium"
                     >
-                        We build <span className="text-primary font-bold">high-converting, SEO-optimized business websites</span> that help brands in Puttalam and across the UK scale up. Trusted by locals, designed for the world.
+                        We simplify the complex. From stunning designs to SEO that dominates, everything your business needs to scale — in one place.
                     </motion.p>
 
-                    {/* CTAs with Gloss Effect */}
+                    {/* CTAs - Integrated Input style or Just Buttons */}
                     <motion.div
-                        initial={{ opacity: 0, y: 40 }}
+                        initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.4 }}
-                        className="flex flex-col sm:flex-row justify-center gap-6 mb-28"
+                        transition={{ duration: 0.8, delay: 0.3 }}
+                        className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center mb-20"
                     >
-                        <motion.a
-                            whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(0,122,255,0.4)", backgroundColor: "#1D4ED8" }}
-                            whileTap={{ scale: 0.98 }}
-                            href="#contact"
-                            className="group relative bg-blue-600 text-white font-bold py-5 px-12 rounded-full transition-all duration-300 shadow-xl shadow-blue-500/30 flex items-center justify-center text-lg overflow-hidden ring-4 ring-blue-500/20 hover:ring-blue-500/40"
-                        >
-                            <span className="relative z-10 flex items-center">
-                                Get a Free Quote
-                                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                            </span>
-                            <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -skew-x-12 translate-x-full group-hover:translate-x-0" />
-                        </motion.a>
-                        <motion.a
-                            whileHover={{ scale: 1.05, backgroundColor: "#DBEAFE" }}
-                            whileTap={{ scale: 0.98 }}
-                            href="#portfolio"
-                            className="bg-blue-50 border-2 border-blue-200 text-primary font-bold py-5 px-12 rounded-full transition-all duration-300 backdrop-blur-xl shadow-glass hover:shadow-glass-lg text-lg hover:border-primary/50"
-                        >
-                            View Portfolio
-                        </motion.a>
+                        <div className="relative group">
+                            <a href="#contact" className="flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-blue-700 transition-all hover:scale-105 shadow-xl shadow-blue-200">
+                                Start your project
+                                <ArrowRight size={18} />
+                            </a>
+                        </div>
+                        <a href="#portfolio" className="flex items-center gap-2 bg-white text-gray-900 border border-gray-200 px-8 py-4 rounded-full font-semibold hover:bg-gray-50 transition-all hover:border-gray-300">
+                            View our work
+                        </a>
                     </motion.div>
 
-                    {/* Trust Badges - Enhanced Blue */}
+                    {/* Bottom Pills - Trust Elements */}
                     <motion.div
-                        initial={{ opacity: 0, y: 50 }}
+                        initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.6 }}
-                        className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 relative"
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        className="flex flex-wrap justify-center gap-3"
                     >
-                        {[
-                            { icon: Zap, title: "Blazing Fast", desc: "100/100 Speed Score", color: "text-blue-600", bg: "bg-blue-200" },
-                            { icon: Search, title: "SEO Ready", desc: "Rank #1 on Google", color: "text-blue-600", bg: "bg-blue-200" },
-                            { icon: Smartphone, title: "Responsive", desc: "Looks great everywhere", color: "text-blue-600", bg: "bg-blue-200" },
-                            { icon: TrendingUp, title: "High Converting", desc: "More leads & sales", color: "text-blue-600", bg: "bg-blue-200" }
-                        ].map((item, index) => (
-                            <Tilt key={index} tiltMaxAngleX={10} tiltMaxAngleY={10} perspective={1000} scale={1.02} className="h-full">
-                                <motion.div
-                                    className="flex flex-col items-center p-6 rounded-3xl bg-blue-50/80 backdrop-blur-md border border-blue-100 shadow-glass-sm hover:shadow-glass-lg transition-all duration-500 h-full group hover:bg-blue-100 hover:border-primary/30"
-                                >
-                                    <div className={`p-4 rounded-2xl mb-4 ${item.bg} ${item.color} group-hover:scale-110 transition-transform duration-300 shadow-sm`}>
-                                        <item.icon size={28} />
-                                    </div>
-                                    <h3 className="text-gray-900 font-bold text-lg mb-1">{item.title}</h3>
-                                    <p className="text-sm text-gray-500 font-medium">{item.desc}</p>
-                                </motion.div>
-                            </Tilt>
+                        {['Custom Design', 'SEO Optimized', 'Fast Support', 'Mobile Ready', 'Secure'].map((item, i) => (
+                            <div key={i} className="px-5 py-2 bg-blue-50/50 border border-blue-100 rounded-full text-blue-700 text-sm font-semibold backdrop-blur-sm">
+                                {item}
+                            </div>
                         ))}
                     </motion.div>
+
                 </div>
             </div>
         </section>

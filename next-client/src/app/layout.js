@@ -1,10 +1,11 @@
-import { Inter } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import WhatsAppButton from "../components/WhatsAppButton";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
+const playfair = Playfair_Display({ subsets: ["latin"], variable: '--font-playfair' });
 
 export const metadata = {
   title: "Web Design Sri Lanka | Professional Websites in Puttalam | LaunchUpWeb",
@@ -20,7 +21,7 @@ export const metadata = {
     siteName: 'LaunchUpWeb',
     images: [
       {
-        url: 'https://launchupweb.com/og-image.jpg', // Ensure you upload an image!
+        url: 'https://launchupweb.com/og-image.jpg',
         width: 1200,
         height: 630,
       },
@@ -52,7 +53,7 @@ export default function RootLayout({ children }) {
         },
         "geo": {
           "@type": "GeoCoordinates",
-          "latitude": 8.033, // Approx Puttalam coords
+          "latitude": 8.033,
           "longitude": 79.826
         },
         "areaServed": ["Puttalam", "Colombo", "United Kingdom"],
@@ -128,7 +129,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased selection:bg-primary selection:text-gray-900`}>
+      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased selection:bg-primary selection:text-gray-900`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}

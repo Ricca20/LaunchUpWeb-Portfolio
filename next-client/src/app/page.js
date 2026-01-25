@@ -5,6 +5,8 @@ import ProblemSolution from '../components/ProblemSolution';
 import Benefits from '../components/Benefits';
 import Testimonials from '../components/Testimonials';
 import CallToAction from '../components/CallToAction';
+import Projects from '../components/Projects';
+import Contact from '../components/Contact';
 import './App.css';
 
 export default function Home() {
@@ -13,8 +15,10 @@ export default function Home() {
       <Hero />
       <ProblemSolution />
       <Benefits />
+      <Projects />
       <Testimonials />
       <CallToAction />
+      <Contact />
     </div>
   );
 }
