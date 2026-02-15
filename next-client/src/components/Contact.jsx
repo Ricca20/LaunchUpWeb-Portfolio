@@ -24,10 +24,21 @@ const Contact = () => {
         e.preventDefault();
         setStatus('sending');
         try {
-            // Attempt to save to backend (which now handles Email)
-            // Use environment variable for API URL or fallback to localhost
-            const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001';
-            await axios.post(`${apiUrl}/api/contact`, formData);
+            // Submit to Web3Forms API
+            const web3formsKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY || 'YOUR_ACCESS_KEY_HERE';
+
+            const submissionData = {
+                access_key: web3formsKey,
+                name: formData.name,
+                company: formData.company,
+                phone: formData.phone,
+                email: formData.email,
+                service: formData.service,
+                message: formData.message,
+                subject: `New Contact Form Submission from ${formData.name}`,
+            };
+
+            await axios.post('https://api.web3forms.com/submit', submissionData);
 
             setStatus('success');
             setFormData({ name: '', company: '', phone: '', email: '', service: '', message: '' });
